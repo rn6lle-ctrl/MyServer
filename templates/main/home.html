@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кириловы дела</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Кириловы дела</h1>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {% if task.is_completed %}
+                        <span class="completed">{{ task.title }}</span>
+                    {% else %}
+                        <span>{{ task.title }}</span>
+                    {% endif %}
+                    <span style="font-size: 12px; color: #95a5a6;">{{ task.created_at|date:"d.m.Y H:i" }}</span>
+                </li>
+            {% empty %}
+                <li>🎉 Нет задач! Отдыхаем.</li>
+            {% endfor %}
+        </ul>
+        <a href="/add/" class="add-btn">➕ Добавить задачу</a>
+        <br />
+        <a href="http://192.168.1.11:8000/admin/" class="add-btn">🛡️ Кабинет администратора</a>
+        <br />
+        <a href="http://192.168.1.11:8000/info/" class="add-btn">🎄 Расчет дней до нового года</a>
+    </div>
+    <fieldset>
+        <legend>Контактная информация</legend>
+        <lebel>Email:<br />
+            <input type="text" name="Email" /> </lebel><br />
+        <lebel>Телефон:<br />
+            <input type="text" name="phone" /> </lebel><br />
+        <lebel>Адрес:<br />
+            <input type="text" name="adress" /> </lebel><br />
+
+    </fieldset>
+</body>
+</html>
