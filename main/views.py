@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from datetime import datetime
+from datetime import datetime,time
 from .models import Task
 from django.shortcuts import render, redirect
 
@@ -45,4 +45,11 @@ def info(request):
     до_нового_года_минут=(до_нового_года1.seconds%3600)//60
     до_нового_года_секунд=(до_нового_года1.seconds%3600)%60
     return HttpResponse(f"<h1>До нового года осталось дней: {до_нового_года_дней}    Часов: {до_нового_года_часов} Минут:  {до_нового_года_минут}   Секунд:  {до_нового_года_секунд}</h1> ")
+def calctime():
+    time1=time(int(input("Введите время 1")))
+    time2=time(int(input("Введите время 2")))
+    действие=input("Введите действие *,/,+,-")
+    if действие=="+":
+        time3=time1+time2
+        print(time3)
 # Create your views here.
